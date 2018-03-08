@@ -9,7 +9,7 @@
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.Extensibility;
     using Microsoft.ApplicationInsights.WindowsServer.Implementation;
-    
+
     /// <summary>
     /// A telemetry context initializer that will set component context version on the base of BuildInfo.config information.
     /// </summary>
@@ -19,6 +19,8 @@
         /// The version for this component.
         /// </summary>
         private string version;
+
+        private const string BuildInfoConfigFilename = "BuildInfo.config";
 
         /// <summary>
         /// Initializes version of the telemetry item with the version obtained from build info if it is available.
@@ -49,7 +51,13 @@
             XElement result = null;
             try
             {
-                var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BuildInfo.config");
+                string path = string.Empty;
+
+#if !NETCORE
+                path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, BuildInfoConfigComponentVersionTelemetryInitializer.BuildInfoConfigFilename);
+#else
+                path = Path.Combine(AppContext.BaseDirectory, BuildInfoConfigComponentVersionTelemetryInitializer.BuildInfoConfigFilename);
+#endif
 
                 if (File.Exists(path))
                 {

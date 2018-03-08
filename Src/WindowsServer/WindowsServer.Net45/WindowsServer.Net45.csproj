@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.props" Condition="Exists('..\..\..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.props')" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'Product.props'))\Product.props" />
@@ -50,6 +50,19 @@
     <Compile Include="..\..\Web\Web.Net45\Implementation\SdkVersionUtils.cs">
       <Link>SdkVersionUtils.cs</Link>
     </Compile>
+    <Compile Include="AzureRoleEnvironmentTelemetryInitializer.cs" />
+    <Compile Include="DeviceTelemetryInitializer.cs" />
+    <Compile Include="FirstChanceExceptionStatisticsTelemetryModule.cs" />
+    <Compile Include="Implementation\AzureRoleEnvironmentContextReader.cs" />
+    <Compile Include="Implementation\AzureServiceRuntimeAssemblyLoader.cs" />
+    <Compile Include="Implementation\DeviceContextReader.cs" />
+    <Compile Include="Implementation\IAzureRoleEnvironmentContextReader.cs" />
+    <Compile Include="Implementation\Role.cs" />
+    <Compile Include="Implementation\RoleEnvironment.cs" />
+    <Compile Include="Implementation\RoleInstance.cs" />
+    <Compile Include="Implementation\RuntimeBindingObject.cs" />
+    <Compile Include="Implementation\ServiceRuntime.cs" />
+    <Compile Include="UnhandledExceptionTelemetryModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\..\packages\Desktop.Analyzers.1.1.0\analyzers\dotnet\cs\Desktop.Analyzers.dll" />

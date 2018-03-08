@@ -300,6 +300,7 @@
             {
                 foreach (KeyValuePair<string, string> property in metric.Dimensions)
                 {
+#if !NETCORE
                     if (string.Compare(property.Key, FirstChanceExceptionStatisticsTelemetryModule.OperationNameTag, StringComparison.Ordinal) == 0)
                     {
                         if (string.IsNullOrEmpty(property.Value) == false)
@@ -308,6 +309,7 @@
                         }
                     }
                     else
+#endif
                     {
                         telemetry.Properties.Add(property);
                     }
@@ -682,7 +684,7 @@
         /// <returns>String representation of the version with prefix added.</returns>
         internal static string GetSdkVersion(string versionPrefix)
         {
-#if !NETSTANDARD1_3
+#if !NETCORE
             string versionStr = typeof(SdkVersionUtils).Assembly.GetCustomAttributes(false)
                     .OfType<AssemblyFileVersionAttribute>()
                     .First()
@@ -1001,7 +1003,7 @@
             string name;
             try
             {
-#if !NETSTANDARD1_3
+#if !NETCORE
                 name = AppDomain.CurrentDomain.FriendlyName;
 #else
                 name = string.Empty;
