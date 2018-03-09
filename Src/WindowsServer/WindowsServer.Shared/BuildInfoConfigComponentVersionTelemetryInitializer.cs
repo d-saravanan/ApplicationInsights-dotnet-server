@@ -15,12 +15,12 @@
     /// </summary>
     public class BuildInfoConfigComponentVersionTelemetryInitializer : ITelemetryInitializer
     {
+        private const string BuildInfoConfigFilename = "BuildInfo.config";
+
         /// <summary>
         /// The version for this component.
         /// </summary>
         private string version;
-
-        private const string BuildInfoConfigFilename = "BuildInfo.config";
 
         /// <summary>
         /// Initializes version of the telemetry item with the version obtained from build info if it is available.
